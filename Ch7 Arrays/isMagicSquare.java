@@ -14,7 +14,7 @@ public static boolean isMagicSquare(int[][] a){
     //is it a square?
     for(int i = 0; i < size; i++){
         if(size != a[i].length){
-            return false;
+            retun false;
         }
     }
     //what is the number all diagonals, rows, and colums should add up to?
@@ -43,7 +43,7 @@ public static boolean isMagicSquare(int[][] a){
             }
         }
         if(rowSum != targetSum || columnSum != targetSum){
-            return false;
+            return false;
         }
     } 
     return rightDiagonalSum == targetSum && leftDiagonalSum == targetSum;
