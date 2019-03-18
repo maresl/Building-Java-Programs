@@ -9,39 +9,42 @@ diagonal sums are equal. For example, [[2, 7, 6], [9, 5, 1], [4, 3, 8]] is a mag
 all eight of the sums are exactly 15.
 */
 
-public static boolean isMagicSquare(int[][] a){
-    int size = a.length;
-    //is it a square?
-    for(int i = 0; i < size; i++){
-        if(size != a[i].length){
-            return false;
-        }
-    }
-    //check for empty matrix
-    //what is the number(target) all diagnals, rows, and colums should add up to?
-    int targetSum = 0;
-    if(size == 0){
-        return true;
-    } else {
-        for(int i = 0; i < a[0].length; i ++){
-            targetSum += a[0][i];
-        }
-    }
-    //are the row, column, and diagonal sums the same as the target?
-    int diagonalSum = 0;
-    for(int i = 0; i < size; i++){
-        int rowSum = 0;
-        int columnSum = 0;
-        for(int j = 0; j < size; j++){
-            rowSum += a[i][j];
-            columnSum += a[j][i];
-            if(i == j){
-                diagonalSum += a[i][i];
+public static boolean isMagicSquare(int[][] a){
+    int size = a.length;
+    //is it a square?
+    for(int i = 0; i < size; i++){
+        if(size != a[i].length){
+            return false;
+        }
+    }
+    //what is the number all diagonals, rows, and colums should add up to?
+    int targetSum = 0;
+    if(size == 0){
+        return true;
+    } else {
+        for(int i = 0; i < a[0].length; i ++){
+            targetSum += a[0][i];
+        }
+    }
+    //are the row, column, and diagonal sums the sameas the target?
+    int rightDiagonalSum = 0;
+    int leftDiagonalSum = 0;
+    for(int i = 0; i < size; i++){
+        int rowSum = 0;
+        int columnSum = 0;
+        for(int j = 0; j < size; j++){
+            rowSum += a[i][j];
+            columnSum += a[j][i];
+            if(i == j){
+                rightDiagonalSum += a[i][i];
+            }
+            if(j == size - 1 - i){
+                leftDiagonalSum += a[i][j];
             }
-        }
-        if(rowSum != targetSum || columnSum != targetSum){
-            return false;
-        }
-    } 
-    return diagonalSum == targetSum;
+        }
+        if(rowSum != targetSum || columnSum != targetSum){
+            return false;
+        }
+    } 
+    return rightDiagonalSum == targetSum && leftDiagonalSum == targetSum;
 }
