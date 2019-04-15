@@ -140,4 +140,16 @@ public class Date {
             daysInMonth[1] = 28;
         }
     }
+    
+    //compares this Date to another; the one that comes chronologically earlier
+    //is "less" than dates that occur after it
+    public int compareTo(Date other) {
+        if (year != other.year) {
+            return year - other.year;
+        } else if (month != other.month) {
+            return month - other.month;
+        } else {
+            return day - other.day;
+        }
+    }
 }
